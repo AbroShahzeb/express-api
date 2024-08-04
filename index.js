@@ -11,7 +11,7 @@ import { connectDB } from "./utils/db.js"
 
 app.get('/', async (req, res, next) => {
     
-    res.json({message: 'Hello world'})
+    res.json({message: 'Hello from the app'})
 })
 
 app.get('/user', async (req, res, next) => {
