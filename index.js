@@ -1,14 +1,30 @@
-const express = require('express')
+import dotenv from "dotenv"
+dotenv.config()
+
+import User from './models/userModel.js'
+
+
+import express from "express"
 const app = express()
 
-app.get('/', (req, res, next) => {
+import { connectDB } from "./utils/db.js"
+
+app.get('/', async (req, res, next) => {
+    
     res.json({message: 'Hello world'})
 })
 
-app.get('/user', (req, res, next) => {
-    res.json({id: 1, name: 'Shahzeb Abro', email: 'shahzeb@gmail.com'})
+app.get('/user', async (req, res, next) => {
+    const users = await User.find()
+    res.json({status: 'success', results: users.length, data: users})
 })
 
-console.log('Hello world')
+app.get('/create-user', async (req, res, next) => {
+    await User.create({name: 'Shahzeb Abro'})
+    res.json('user created')
+})
 
-app.listen(3000, () => console.log('App is listening on port 3000'))
+connectDB().then(() => {
+
+    app.listen(3000, () => console.log('App is listening on port 3000'))
+})
