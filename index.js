@@ -24,22 +24,6 @@ app.get('/', async (req, res, next) => {
     res.json({ message: 'Hello from the app' });
 });
 
-app.get(
-    '/user',
-    catchAsync(async (req, res, next) => {
-        const users = await User.find();
-        res.json({ status: 'success', results: users.length, data: users });
-    })
-);
-
-app.post(
-    '/create-user',
-    catchAsync(async (req, res, next) => {
-        const user = await User.create(req.body);
-        res.json({ user });
-    })
-);
-
 app.use('/api/v1/auth/', authRoutes);
 
 app.use(globalErrorHandler);

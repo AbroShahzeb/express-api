@@ -28,7 +28,6 @@ export const login = catchAsync(async (req, res, next) => {
     const { email, password } = req.body;
 
     const user = await User.findOne({ email }).select('+password');
-    console.log(user);
 
     if (!user) {
         return next(
