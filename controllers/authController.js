@@ -6,7 +6,6 @@ import User from '../models/userModel.js';
 import AppError from '../utils/appError.js';
 
 import jwt from 'jsonwebtoken';
-import { ExternalAccountAuthorizedUserClient } from 'google-auth-library/build/src/auth/externalAccountAuthorizedUserClient.js';
 
 const client = new OAuth2Client(
     '113791688981-b5a07o1kd42vuuio655fosap0e61of10.apps.googleusercontent.com'
@@ -97,9 +96,10 @@ export const googleAuth = catchAsync(async (req, res, next) => {
 
     const user = await User.findOne({ googleId: id });
 
-    let token = signToken(user._id, res);
+    let token;
 
     if (user) {
+        token = signToken(user._id, res);
         user.googleId = undefined;
         return res.status(200).json({
             status: 'success',
