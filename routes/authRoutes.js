@@ -9,8 +9,6 @@ import {
     forgotPassword,
 } from '../controllers/authController.js';
 
-// heeeehuwhfiuw
-
 router.post('/login', login);
 router.post('/register', register);
 router.post('/google', googleAuth);
