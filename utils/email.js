@@ -50,7 +50,7 @@ export const sendEmail = catchAsync(async (req, res, next) => {
         .sendMail(message)
         .then(() => {
             return res.status(201).json({
-                msg: 'you should receive an email',
+                msg: 'you should receive an email heh',
             });
         })
         .catch((error) => {
