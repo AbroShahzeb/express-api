@@ -13,9 +13,9 @@ export const sendEmail = catchAsync(async (req, res, next) => {
     });
 
     let MailGenerator = new Mailgen({
-        theme: 'default',
+        theme: 'salted',
         product: {
-            name: 'Mailgen',
+            name: 'Event Hub',
             link: 'https://mailgen.js',
         },
     });
