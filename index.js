@@ -22,6 +22,14 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(path.dirname(fileURLToPath(import.meta.url)), 'public')));
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Set the view engine to Pug
+app.set('view engine', 'pug');
+
+// Set the directory where Pug templates are located
+app.set('views', path.join(__dirname, 'views'));
 
 // console.log('Public path', path.join(import.meta.url, '../public'));
 
