@@ -1,26 +1,20 @@
 import express from 'express';
 const router = express.Router();
 
-import { login, googleAuth, register } from '../controllers/authController.js';
-import Email from '../utils/email.js';
-import catchAsync from '../utils/catchAsync.js';
-
-const email = new Email(
-    { name: 'Shahzeb', email: 'shahzebaliabro12345@gmail.com' },
-    'https://event-hub-fast.vercel.app/login'
-);
+import {
+    login,
+    googleAuth,
+    register,
+    resetPassword,
+    forgotPassword,
+} from '../controllers/authController.js';
 
 // heeeehuwhfiuw
 
 router.post('/login', login);
 router.post('/register', register);
 router.post('/google', googleAuth);
-router.post(
-    '/mail',
-    catchAsync(async (req, res, next) => {
-        await email.sendPasswordReset();
-        res.json({ message: 'Email sent successfully' });
-    })
-);
+router.post('/reset-password/:token', resetPassword);
+router.post('/forgot-password', forgotPassword);
 
 export default router;

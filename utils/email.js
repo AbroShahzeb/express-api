@@ -7,18 +7,9 @@ import { htmlToText } from 'html-to-text';
 
 import { fileURLToPath } from 'url';
 import path from 'path';
-import crypto from 'crypto';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
-function generatePassword(length = 8) {
-    return crypto
-        .randomBytes(length)
-        .toString('base64') // Convert to base64 string
-        .slice(0, length) // Trim to the required length
-        .replace(/[^a-zA-Z0-9]/g, ''); // Remove non-alphanumeric characters
-}
 
 export default class Email {
     constructor(user, url) {
@@ -45,7 +36,6 @@ export default class Email {
             firstName: this.firstName,
             url: this.url,
             subject,
-            newPassword: generatePassword(),
         });
 
         // 2) Define email options

@@ -3,8 +3,6 @@ dotenv.config();
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-console.log(path.join(path.dirname(fileURLToPath(import.meta.url)), 'public'));
-
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 
