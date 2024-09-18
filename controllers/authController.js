@@ -193,3 +193,9 @@ export const resetPassword = catchAsync(async (req, res, next) => {
         user,
     });
 });
+
+export const uploadImage = (req, res, next) => {
+    console.log(req.file);
+    console.log(req.body);
+    res.json('Whatever');
+};
